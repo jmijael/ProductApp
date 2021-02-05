@@ -1,0 +1,90 @@
+<mat-toolbar>
+  <span>Administracion de Articulos</span>
+</mat-toolbar>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="Codigo">
+    <th mat-header-cell *matHeaderCellDef> Codigo </th>
+    <td mat-cell *matCellDef="let element"> {{element.Codigo}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Descripcion">
+    <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+    <td mat-cell *matCellDef="let element"> {{element.Descripcion}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Precio">
+    <th mat-header-cell *matHeaderCellDef> Precio </th>
+    <td mat-cell *matCellDef="let element"> {{element.Precio}} </td>
+  </ng-container>
+  
+
+  <ng-container matColumnDef="Borrar">
+    <th mat-header-cell *matHeaderCellDef> Borrar </th>
+    <td mat-cell *matCellDef="let element"> 
+      <button (click) = "borrar(element)" mat-button color="primary">Borrar</button> 
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="Seleccionar">
+    <th mat-header-cell *matHeaderCellDef> Seleccionar </th>
+    <td mat-cell *matCellDef="let element">
+      <button (click) = "seleccionar(element)" mat-button color="primary">Seleccionar</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<br>
+<!-- <table border="1" *ngIf="hayRegistros(); else sinarticulos">
+  <tr>
+    <td>Codigo</td>
+    <td>Descripcion</td>
+    <td>Precio</td>
+    <td>Borrar</td>
+    <td>Seleccionar</td>
+  </tr>
+  <tr *ngFor="let producto of Productos">
+    <td><a href="#" (click) = "seleccionar(producto)">{{producto.Codigo}}</a></td>
+    <td>{{producto.Descripcion}}</td>
+    <td>{{producto.Precio}}</td>
+    <td>
+      <button (click) = "borrar(producto)">Borrar</button>
+    </td>
+    <td>
+      <button (click) = "seleccionar(producto)">Seleccionar</button>
+    </td>
+  </tr>
+</table> -->
+<ng-template #sinarticulos><p>No hay Articulos</p></ng-template>
+<div>
+  <mat-card>
+      <div>
+        <p>
+          <mat-form-field appearance="outline" >
+            <mat-label>Codigo</mat-label>
+            <input matInput [(ngModel)] ="SelProd.Codigo">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Descripción</mat-label>
+            <input matInput [(ngModel)] ="SelProd.Descripcion">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Precio</mat-label>
+            <input matInput [(ngModel)] ="SelProd.Precio">
+          </mat-form-field>
+        </p>
+      </div>
+    <p>
+      <button mat-button color="primary" (click)="agregar()">Agregar</button>
+      <button mat-button color="primary" (click)="modificar()">Modificar</button>
+    </p>
+
+  </mat-card>
+  
+</div>
+
